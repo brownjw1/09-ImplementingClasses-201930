@@ -7,6 +7,8 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          and Jared Brown.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 import math
+
+
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_init()
@@ -20,6 +22,7 @@ def main():
     run_test_get_distance_traveled()
     run_test_closer_to()
     run_test_halfway_to()
+
 
 ###############################################################################
 # IMPORTANT:
@@ -44,67 +47,65 @@ def main():
 # to have additional side effects as needed by it and/or other methods.
 ###############################################################################
 class Point():
-    def __init__(self,x,y):
-        self.x=x
-        self.y=y
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
         self.totalMoves = 0
-        self.startX=x
-        self.startY=y
-        self.totalDistance=0
+        self.startX = x
+        self.startY = y
+        self.totalDistance = 0
 
     def __repr__(self):
-        return ("Point ({}, {})".format(self.x,self.y))
-    def clone(self):
-        p=Point(self.x,self.y)
-        return p
-    def move_to(self,x,y):
-        self.totalDistance += math.sqrt((self.x-x)**2+(self.y-y)**2)
-        self.x=x
-        self.y=y
-        self.totalMoves+=1
+        return ("Point ({}, {})".format(self.x, self.y))
 
-    def move_by(self,dx,dy):
-        self.x+=dx
-        self.y+=dy
-        self.totalMoves+=1
-        self.totalDistance+=math.sqrt(dx**2+dy**2)
+    def clone(self):
+        p = Point(self.x, self.y)
+        return p
+
+    def move_to(self, x, y):
+        self.totalDistance += math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
+        self.x = x
+        self.y = y
+        self.totalMoves += 1
+
+    def move_by(self, dx, dy):
+        self.x += dx
+        self.y += dy
+        self.totalMoves += 1
+        self.totalDistance += math.sqrt(dx ** 2 + dy ** 2)
 
     def get_number_of_moves_made(self):
         return self.totalMoves
-    def get_distance_from(self,point):
-        distX=self.x-point.x
-        distY=self.y-point.y
-        distance=math.sqrt(distX**2+distY**2)
+
+    def get_distance_from(self, point):
+        distX = self.x - point.x
+        distY = self.y - point.y
+        distance = math.sqrt(distX ** 2 + distY ** 2)
         return distance
+
     def get_distance_from_start(self):
-        distanceX=self.startX-self.x
-        distanceY=self.startY-self.y
-        return(math.sqrt(distanceX**2+distanceY**2))
+        distanceX = self.startX - self.x
+        distanceY = self.startY - self.y
+        return (math.sqrt(distanceX ** 2 + distanceY ** 2))
+
     def get_distance_traveled(self):
         return self.totalDistance
-    def closer_to(self,p2,p3):
-        d2=self.get_distance_from(p2)
-        d3=self.get_distance_from(p3)
-        if(d2>d3):
+
+    def closer_to(self, p2, p3):
+        d2 = self.get_distance_from(p2)
+        d3 = self.get_distance_from(p3)
+        if (d2 > d3):
             return p3
-        elif(d3>d2):
+        elif (d3 > d2):
             return p2
         else:
             return p2
-    def halfway_to(self,p2):
-        avgX=(self.x+p2.x)/2
-        avgY=(self.y+p2.y)/2
-        p3=Point(avgX,avgY)
+
+    def halfway_to(self, p2):
+        avgX = (self.x + p2.x) / 2
+        avgY = (self.y + p2.y) / 2
+        p3 = Point(avgX, avgY)
         return p3
-
-
-
-
-
-
-
-
-
 
 
 def run_test_init():
